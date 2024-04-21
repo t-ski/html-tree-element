@@ -2,32 +2,17 @@
 <html>
     <head>
         <title>Test</title>
-        <script src="./lib/TreeElement.js"></script>
+        <script src="../lib/TreeElement.js"></script>
         <style>
+            html {
+                color: blue;
+            }
             .heading {
                 color: rebeccapurple;
             }
         </style>
-    </head>
-    <body>
-        <h1 class="heading">Test</h1>
-        <p>
-            Lorem ipsum dolor sit amet...
-        </p>
-        <dom-tree id="tree" style="width: 60vw; height: fit-content;" />
-        <template id="cell-template">
-            <div>
-                <h2 class="heading">{{ data }}</h2>
-                <button type="button" onclick="clickHandler()">Say Hello</button>
-            </div>
-            <style>
-                .heading {
-                    text-decoration: underline;
-                }
-            </style>
-        </template>
         <script>
-            const treeObj = {
+            window.TREE_DATA_OBJ = {
                 data: "root",
                 clickHandler: () => alert("Hello from root"),
                 children: [
@@ -97,15 +82,41 @@
                 ],
             };
 
+            HTMLTreeElement.configureDefault({
+                horizontal: true
+            });
+        </script>
+    </head>
+    <body>
+        <h1 class="heading">Test</h1>
+        <p>
+            Lorem ipsum dolor sit amet...
+        </p>
+        <div style="max-width: 75vw; background-color: azure;">
+            <template id="cell-template">
+                <div>
+                    <h2 class="heading">{{ data }}</h2>
+                    <button type="button" onclick="clickHandler()">Say Hello</button>
+                </div>
+                <style>
+                    .heading {
+                        text-decoration: underline;
+                    }
+                </style>
+            </template>
+            <tree-element data="TREE_DATA_OBJ" template="#cell-template" id="tree" style="width: 90%;" />
+        </div>
+        <script>
             document.querySelector("#tree")
-            .setTemplate("#cell-template")
-            .setOptions({
+            .configure({
                 linkColor: "#808080",
                 linkLength: "3rem",
+                linkMargin: "0.5rem",
                 linkSlopeStart: 0.5,
-                linkSlopeEnd: 1.0
+                linkSlopeEnd: 1.0,
+                linkStrength: 2
             })
-            .render(treeObj);
+            //.render();
         </script>
     </body>
 </html>
