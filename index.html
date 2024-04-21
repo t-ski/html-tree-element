@@ -2,17 +2,34 @@
 <html>
     <head>
         <title>Test</title>
-        <script src="./lib/app.js"></script>
+        <script src="./lib/TreeElement.js"></script>
+        <style>
+            .heading {
+                color: rebeccapurple;
+            }
+        </style>
     </head>
     <body>
-        <h1>Test</h1>
+        <h1 class="heading">Test</h1>
         <p>
             Lorem ipsum dolor sit amet...
         </p>
-        <div id="tree"></div>
+        <dom-tree id="tree" style="width: 60vw; height: fit-content;" />
+        <template id="cell-template">
+            <div>
+                <h2 class="heading">{{ data }}</h2>
+                <button type="button" onclick="clickHandler()">Say Hello</button>
+            </div>
+            <style>
+                .heading {
+                    text-decoration: underline;
+                }
+            </style>
+        </template>
         <script>
-            const treeObj = new DOM_TREE.Tree({
+            const treeObj = {
                 data: "root",
+                clickHandler: () => alert("Hello from root"),
                 children: [
                     {
                         data: "1.1",
@@ -78,10 +95,17 @@
                         ],
                     },
                 ],
-            });
+            };
 
-            console.log(treeObj.toString());
-            treeObj.mount("#tree");
+            document.querySelector("#tree")
+            .setTemplate("#cell-template")
+            .setOptions({
+                linkColor: "#808080",
+                linkLength: "3rem",
+                linkSlopeStart: 0.5,
+                linkSlopeEnd: 1.0
+            })
+            .render(treeObj);
         </script>
     </body>
 </html>
