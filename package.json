@@ -6,6 +6,7 @@
   "main": "./lib/app.js",
   "scripts": {
     "sandbox": "open ./test/sandbox.html",
+    "examples": "open ./test/examples.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": []

@@ -70,10 +70,10 @@
                                         data: "3.4",
                                         children: [
                                             {
-                                                data: "4.1",
-                                                children: [],
+                                                data: "4.1"
                                             },
                                         ],
+                                        clickHandler: () => alert("Hello from 3.4")
                                     },
                                 ],
                             },
@@ -108,15 +108,19 @@
         </div>
         <script>
             document.querySelector("#tree")
+            .nodeCallback((node, el) => {
+                if(node.clickHandler) return;
+                const button = el.querySelector("button");
+                button.parentNode.removeChild(button);
+            }, true)
             .configure({
                 linkColor: "#808080",
-                linkLength: "3rem",
+                linkLength: "7.5rem",
                 linkMargin: "0.5rem",
                 linkSlopeStart: 0.5,
-                linkSlopeEnd: 1.0,
-                linkStrength: 2
-            })
-            //.render();
+                linkSlopeEnd: 0.5,
+                linkStrength: 0.5
+            });
         </script>
     </body>
 </html>

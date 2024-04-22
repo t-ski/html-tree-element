@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Examples</title>
+        <script src="./lib/TreeElement.js"></script>
+        <style>
+            * {
+                box-sizing: border-box;
+                font-family: sans-serif;
+            }
+            html {
+                margin: 0;
+                background-color: #FAFAFA;
+                color: #18182B;
+            }
+            body {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin: auto;
+                padding: 2rem;
+                width: 100%;
+                max-width: 1480px;
+            }
+            .example {
+                margin-bottom: 2rem;
+                padding: 2rem;
+                background-color: #FFFFFF;
+                width: calc(50% - (2rem / 2));
+                border-radius: 0.5rem;
+                box-shadow: 0 0 0.5rem -0.125rem rgba(0, 0, 20, 0.15);
+            }
+            .example:not(:nth-of-type(2)) {
+                margin-right: 2rem;
+            }
+            .example h2 {
+                display: inline-block;
+                margin-top: 0;
+                margin-bottom: 2rem;
+                padding: 0.5rem;
+                line-height: 1em;
+                font-size: 1.25rem;
+                background-color: #18182B;
+                color: #FFFFFF;
+                border-radius: 0.25rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="example" id="tree--class">
+            <h2>Class Tree</h2>
+            <template>
+                <div class="node">
+                    <strong>{{ label }}</strong>
+                    <a href="https://www.wikidata.org/wiki/{{ id }}">Details</a>
+                </div>
+                <style>
+                    .node {
+                        padding: 0.75rem;
+                        border: 1px solid #A2A2A2;
+                        border-radius: 0.25rem;
+                    }
+                    strong {
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        font-family: Helvetica, Arial, sans-serif;
+                    }
+                </style>
+            </template>
+            <tree-element />
+            <script>
+                document.querySelector("#tree--class tree-element")
+                .template("#tree--class template")
+                .configure({
+                    horizontal: true,
+                    linkColor: "#A2A2A2",
+                    linkLength: "3.5rem",
+                    linkSlopeStart: 0,
+                    linkSlopeEnd: 0.5,
+                })
+                .render({
+                    label: "Vehicle",
+                    id: "Q749935",
+                    children: [
+                        {
+                            label: "Automobile",
+                            id: "Q749935",
+                            children: [
+                                {
+                                    label: "Limousine",
+                                    id: "Q749935"
+                                },
+                                {
+                                    label: "Coupe",
+                                    id: "Q749935",
+                                    children: [
+                                        {
+                                            label: "Aston Martin DB9",
+                                            id: "Q749935"
+                                        },
+                                        {
+                                            label: "Audi R8",
+                                            id: "Q749935"
+                                        }
+                                    ]
+                                },
+                                {
+                                    label: "Van",
+                                    id: "Q749935"
+                                }
+                            ]
+                        },
+                        {
+                            label: "Bicycle",
+                            id: "Q749935",
+                            children: [
+                                {
+                                    label: "Street Bike",
+                                    id: "Q749935"
+                                },
+                                {
+                                    label: "Mountain Bike",
+                                    id: "Q749935"
+                                }
+                            ]
+                        }
+                    ]
+                });
+            </script>
+        </div>
+        <div class="example" id="tree--family">
+            <h2>Family Tree</h2>
+            <template>
+                <div class="node">
+                    <strong>{{ name }}</strong>
+                    <span>({{ age }} y.o.)</span>
+                </div>
+                <style>
+                    .node {
+                        padding-bottom: 0.5rem;
+                        border-bottom: 0.25rem solid #E04000;
+                    }
+                    strong {
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+                        font-size: 1.35rem;
+                        text-align: center;
+                    }
+                    span {
+                        display: block;
+                        color: #6A6A65;
+                        font-family: Helvetica, Arial, sans-serif;
+                        font-weight: 300;
+                    }
+                </style>
+            </template>
+            <tree-element />
+            <script>
+                document.querySelector("#tree--family tree-element")
+                .template("#tree--family template")
+                .configure({
+                    linkColor: "#6A6A65",
+                    linkLength: "7rem",
+                    linkMargin: "1rem",
+                    linkSlopeStart: 0.5,
+                    linkSlopeEnd: 1,
+                    linkStrength: 2
+                })
+                .render({
+                    name: "Jay",
+                    age: 71,
+                    children: [
+                        {
+                            name: "Claire",
+                            age: 48,
+                            children: [
+                                {
+                                    name: "Haley",
+                                    age: 25
+                                },
+                                {
+                                    name: "Alex",
+                                    age: 22,
+                                },
+                                {
+                                    name: "Luke",
+                                    age: 20
+                                }
+                            ]
+                        },
+                        {
+                            name: "Mitchell",
+                            age: 45,
+                            children: [
+                                {
+                                    name: "Lily",
+                                    age: 14
+                                }
+                            ]
+                        }
+                    ]
+                });
+            </script>
+        </div>
+        <div class="example" id="tree--syntax">
+            <h2>Syntax Tree</h2>
+            <template>
+                <div class="node">
+                    <span class="type">{{ type }}</span>
+                    <span class="terminal">{{ terminal }}</span>
+                </div>
+                <style>
+                    .node {
+                        font-size: 1.25rem;
+                    }
+                    .type {
+                        color: #0000FF;
+                    }
+                    .terminal {
+                        color: #FF0000;
+                    }
+                </style>
+            </template>
+            <tree-element style="max-width: 400px;" />
+            <script>
+                document.querySelector("#tree--syntax tree-element")
+                .template("#tree--syntax template")
+                .configure({
+                    linkCap: "butt",
+                    linkLength: "2.75rem",
+                    linkMargin: "0.5rem",
+                    linkSlopeStart: 0,
+                    linkSlopeEnd: 0,
+                    linkStrength: 3
+                })
+                .render({
+                    type: "NP",
+                    children: [
+                        {
+                            type: "Det",
+                            children: [
+                                {
+                                    terminal: "The"
+                                }
+                            ]
+                        },
+                        {
+                            type: "N'",
+                            children: [
+                            {
+                                    type: "AdjP",
+                                    children: [
+                                        {
+                                            terminal: "great white"
+                                        }
+                                    ]
+                                },
+                                {
+                                    type: "N",
+                                    children: [
+                                        {
+                                            terminal: "shark"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                });
+            </script>
+        </div>
+    </body>
+</html>
