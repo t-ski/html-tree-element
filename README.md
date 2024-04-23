@@ -1,4 +1,3 @@
-
 # HTML Tree Element 
 
 A DOM-based rendering solution for displaying tree structures.  

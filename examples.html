@@ -12,6 +12,7 @@
                 margin: 0;
                 background-color: #FAFAFA;
                 color: #18182B;
+                font-size: 16px;
             }
             body {
                 display: flex;
@@ -24,22 +25,25 @@
             }
             .example {
                 margin-bottom: 2rem;
-                padding: 2rem;
                 background-color: #FFFFFF;
                 width: calc(50% - (2rem / 2));
                 border-radius: 0.5rem;
                 box-shadow: 0 0 0.5rem -0.125rem rgba(0, 0, 20, 0.15);
+                overflow: scroll;
             }
-            .example:not(:nth-of-type(2)) {
+            .example tree-element {
+                padding: 2rem;
+            }
+            .example:not(:nth-of-type(2n)) {
                 margin-right: 2rem;
             }
             .example h2 {
                 display: inline-block;
-                margin-top: 0;
-                margin-bottom: 2rem;
+                margin-top: 2rem;
+                margin-left: 2rem;
                 padding: 0.5rem;
                 line-height: 1em;
-                font-size: 1.25rem;
+                font-size: 1rem;
                 background-color: #18182B;
                 color: #FFFFFF;
                 border-radius: 0.25rem;
@@ -47,16 +51,19 @@
         </style>
     </head>
     <body>
+
+        <!-- CLASS TREE -->
         <div class="example" id="tree--class">
             <h2>Class Tree</h2>
             <template>
                 <div class="node">
                     <strong>{{ label }}</strong>
-                    <a href="https://www.wikidata.org/wiki/{{ id }}">Details</a>
+                    <a href="https://www.wikidata.org/wiki/{{ id }}" target="_blank" rel="noreferrer">Details</a>
                 </div>
                 <style>
                     .node {
                         padding: 0.75rem;
+                        min-width: 7.5rem;
                         border: 1px solid #A2A2A2;
                         border-radius: 0.25rem;
                     }
@@ -100,7 +107,13 @@
                                         },
                                         {
                                             label: "Audi R8",
-                                            id: "Q749935"
+                                            id: "Q749935",
+                                            children: [
+                                                {
+                                                    label: "Audi R8 Spyder",
+                                                    id: "Q749935"
+                                                }
+                                            ]
                                         }
                                     ]
                                 },
@@ -128,6 +141,101 @@
                 });
             </script>
         </div>
+        
+        <!-- CLASS TREE (TRANSFORM) -->
+        <div class="example" id="tree--class-transform">
+            <h2>Class Tree (with Transform)</h2>
+            <template>
+                <div class="node">
+                    <strong>{{ label }}</strong>
+                    <a href="https://www.wikidata.org/wiki/{{ id }}" target="_blank" rel="noreferrer">Details</a>
+                </div>
+                <style>
+                    .node {
+                        padding: 0.75rem;
+                        min-width: 7.5rem;
+                        border: 1px solid #A2A2A2;
+                        border-radius: 0.25rem;
+                    }
+                    strong {
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        font-family: Helvetica, Arial, sans-serif;
+                    }
+                </style>
+            </template>
+            <tree-element />
+            <script>
+                document.querySelector("#tree--class-transform tree-element")
+                .template("#tree--class-transform template")
+                .configure({
+                    horizontal: true,
+                    linkColor: "#A2A2A2",
+                    linkLength: "3.5rem",
+                    linkSlopeStart: 0,
+                    linkSlopeEnd: 0.5,
+                })
+                .transform({
+                    zoomSpeed: 2.0
+                })
+                .render({
+                    label: "Vehicle",
+                    id: "Q749935",
+                    children: [
+                        {
+                            label: "Automobile",
+                            id: "Q749935",
+                            children: [
+                                {
+                                    label: "Limousine",
+                                    id: "Q749935"
+                                },
+                                {
+                                    label: "Coupe",
+                                    id: "Q749935",
+                                    children: [
+                                        {
+                                            label: "Aston Martin DB9",
+                                            id: "Q749935"
+                                        },
+                                        {
+                                            label: "Audi R8",
+                                            id: "Q749935",
+                                            children: [
+                                                {
+                                                    label: "Audi R8 Spyder",
+                                                    id: "Q749935"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    label: "Van",
+                                    id: "Q749935"
+                                }
+                            ]
+                        },
+                        {
+                            label: "Bicycle",
+                            id: "Q749935",
+                            children: [
+                                {
+                                    label: "Street Bike",
+                                    id: "Q749935"
+                                },
+                                {
+                                    label: "Mountain Bike",
+                                    id: "Q749935"
+                                }
+                            ]
+                        }
+                    ]
+                });
+            </script>
+        </div>
+
+        <!-- FAMILY TREE -->
         <div class="example" id="tree--family">
             <h2>Family Tree</h2>
             <template>
@@ -138,6 +246,7 @@
                 <style>
                     .node {
                         padding-bottom: 0.5rem;
+                        text-align: center;
                         border-bottom: 0.25rem solid #E04000;
                     }
                     strong {
@@ -145,7 +254,6 @@
                         margin-bottom: 0.5rem;
                         font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
                         font-size: 1.35rem;
-                        text-align: center;
                     }
                     span {
                         display: block;
@@ -155,14 +263,14 @@
                     }
                 </style>
             </template>
-            <tree-element />
+            <tree-element style="width: auto;" />
             <script>
                 document.querySelector("#tree--family tree-element")
                 .template("#tree--family template")
                 .configure({
                     linkColor: "#6A6A65",
                     linkLength: "7rem",
-                    linkMargin: "1rem",
+                    linkMargin: "0.75rem",
                     linkSlopeStart: 0.5,
                     linkSlopeEnd: 1,
                     linkStrength: 2
@@ -203,6 +311,8 @@
                 });
             </script>
         </div>
+
+        <!-- SYNTAX TREE -->
         <div class="example" id="tree--syntax">
             <h2>Syntax Tree</h2>
             <template>
@@ -219,6 +329,7 @@
                     }
                     .terminal {
                         color: #FF0000;
+                        white-space: nowrap;
                     }
                 </style>
             </template>
@@ -270,5 +381,6 @@
                 });
             </script>
         </div>
+
     </body>
 </html>
