@@ -46,14 +46,13 @@
                 font-size: 1rem;
                 background-color: #18182B;
                 color: #FFFFFF;
-                border-radius: 0.25rem;
             }
         </style>
     </head>
     <body>
 
         <!-- CLASS TREE -->
-        <div class="example" id="tree--class">
+        <div class="example" id="tree--class" style="overflow: scroll;">
             <h2>Class Tree</h2>
             <template>
                 <div class="node">
@@ -66,6 +65,9 @@
                         min-width: 7.5rem;
                         border: 1px solid #A2A2A2;
                         border-radius: 0.25rem;
+                    }
+                    .node:hover {
+                        background-color: #FFFEEA;
                     }
                     strong {
                         display: block;
@@ -85,7 +87,7 @@
                     linkSlopeStart: 0,
                     linkSlopeEnd: 0.5,
                 })
-                .render({
+                .data({
                     label: "Vehicle",
                     id: "Q749935",
                     children: [
@@ -157,6 +159,9 @@
                         border: 1px solid #A2A2A2;
                         border-radius: 0.25rem;
                     }
+                    .node:hover {
+                        background-color: #FFFEEA;
+                    }
                     strong {
                         display: block;
                         margin-bottom: 0.5rem;
@@ -178,7 +183,7 @@
                 .transform({
                     zoomSpeed: 2.0
                 })
-                .render({
+                .data({
                     label: "Vehicle",
                     id: "Q749935",
                     children: [
@@ -275,7 +280,7 @@
                     linkSlopeEnd: 1,
                     linkStrength: 2
                 })
-                .render({
+                .data({
                     name: "Jay",
                     age: 71,
                     children: [
@@ -345,7 +350,7 @@
                     linkSlopeEnd: 0,
                     linkStrength: 3
                 })
-                .render({
+                .data({
                     type: "NP",
                     children: [
                         {
