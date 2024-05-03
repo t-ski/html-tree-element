@@ -1,13 +1,19 @@
 {
-  "name": "dom-graph",
+  "name": "html-tree-element",
   "version": "0.1.0",
-  "author": "Thassilo Martin Schiepanski",
-  "description": "",
+  "description": "Rich HTML tree component `<tree-element>` for native usage.",
   "main": "./lib/app.js",
   "scripts": {
-    "sandbox": "open ./test/sandbox.html",
-    "examples": "open ./test/examples.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "examples": "open ./examples.html",
+    "test": "open ./test/test.html"
   },
-  "keywords": []
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t-ski/html-tree-element.git"
+  },
+  "author": "Thassilo Martin Schiepanski",
+  "bugs": {
+    "url": "https://github.com/t-ski/html-tree-element/issues"
+  },
+  "homepage": "https://github.com/t-ski/html-tree-element#readme"
 }
