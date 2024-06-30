@@ -1,11 +1,10 @@
 {
   "name": "html-tree-element",
   "version": "0.1.0",
-  "description": "Rich HTML tree component `<tree-element>` for native usage.",
-  "main": "./lib/app.js",
+  "description": "Rich HTML tree element <tree-element> based on pure HTML node templates.",
   "scripts": {
     "examples": "open ./examples.html",
-    "test": "open ./test/test.html"
+    "test": "open ./test.html"
   },
   "repository": {
     "type": "git",

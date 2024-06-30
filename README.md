@@ -1,19 +1,11 @@
-# HTML Tree Element 
+# HTMLTreeElement 
 
-Simple HTML tree element based on pure HTML node templates.
+Rich HTML tree element based on pure HTML node templates.
 
 ## Integration
 
-### Via CDN
-
 ``` html
-<script src="https://raw.githubusercontent.com/t-ski/html-tree/main/lib/TreeElement.js"></script>
-```
-
-### Via NPM
-
-``` cli
-npm i t-ski/html-tree
+<script src="https://raw.githubusercontent.com/t-ski/html-tree-element/main/HTMLTreeElement.js"></script>
 ```
 
 Existing tree rendering solutions usually rely on fine grained 2D drawing environments like SVG or canvas. The presented tree rendering solution provides a native HTML element interface in favour of simple integration. In fact, displaying a tree merely requires a template for the individual tree nodes, besides the hosting tree instance.
@@ -28,9 +20,6 @@ Existing tree rendering solutions usually rely on fine grained 2D drawing enviro
       },
       {
         genre: "Shojo"
-      },
-      {
-        genre: "Kodomomuke"
       }
     ]
   });

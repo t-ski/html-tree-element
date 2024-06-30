@@ -3,7 +3,7 @@
 
 (() => {
     
-    class TreeElement extends HTMLElement {
+    class HTMLTreeElement extends HTMLElement {
         static #defaultConfiguration = {
             childrenPropertyIdentifier: "children",
             horizontal: false,
@@ -43,16 +43,16 @@
         }
 
         static configureDefault(configuration) {
-            TreeElement.#defaultConfiguration = {
-                ...TreeElement.#defaultConfiguration,
+            HTMLTreeElement.#defaultConfiguration = {
+                ...HTMLTreeElement.#defaultConfiguration,
                 ...configuration
             };
         }
 
         #data;
         #template;
-        #configuration = TreeElement.#defaultConfiguration;
-        #nodeCallback = TreeElement.#defaultNodeCallback;
+        #configuration = HTMLTreeElement.#defaultConfiguration;
+        #nodeCallback = HTMLTreeElement.#defaultNodeCallback;
         #linkRenderers = [];
         #transformEnabled = false;
         #zoom = 1;
@@ -463,8 +463,8 @@
         }
     }
     
-    customElements.define("tree-element", TreeElement);
+    customElements.define("tree-element", HTMLTreeElement);
 
-    window.HTMLTreeElement = TreeElement;
+    window.HTMLTreeElement = HTMLTreeElement;
 
 })();
